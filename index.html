@@ -3,92 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Video Sharing Website</title>
+    <title>Simple Video Sharing</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            text-align: center;
-        }
-
-        main {
-            padding: 20px;
-        }
-
-        video {
-            width: 100%;
-            height: auto;
-        }
-
-        .comment-section {
-            margin-top: 20px;
-        }
-
-        #commentInput {
-            width: 80%;
-            padding: 5px;
-        }
-
-        #submitComment {
-            padding: 5px;
-            cursor: pointer;
-        }
-
-        #commentsList {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .comment {
-            margin-bottom: 10px;
-        }
+        /* Add your CSS styles here */
     </style>
 </head>
 <body>
 
-<header>
-    <h1>My Video Sharing Website</h1>
-</header>
+    <h1>Simple Video Sharing</h1>
 
-<main>
-    <h2>Video Title</h2>
-    <video controls>
-        <source src="sample_video.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-
-    <div class="comment-section">
-        <h3>Comments</h3>
-        <input type="text" id="commentInput" placeholder="Add a comment...">
-        <button id="submitComment">Submit</button>
-        <ul id="commentsList"></ul>
+    <div>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
     </div>
-</main>
 
-<script>
-    document.getElementById('submitComment').addEventListener('click', function () {
-        var commentInput = document.getElementById('commentInput');
-        var commentText = commentInput.value.trim();
+    <div>
+        <h2>Comments</h2>
+        <ul id="comments-list"></ul>
+        <textarea id="comment-input" placeholder="Add your comment"></textarea>
+        <button onclick="postComment()">Post Comment</button>
+    </div>
 
-        if (commentText !== '') {
-            var commentsList = document.getElementById('commentsList');
-            var newComment = document.createElement('li');
-            newComment.className = 'comment';
-            newComment.textContent = commentText;
-            commentsList.appendChild(newComment);
+    <script>
+        function postComment() {
+            var commentInput = document.getElementById('comment-input');
+            var comment = commentInput.value;
+
+            if (comment.trim() === '') {
+                return;
+            }
+
+            var commentsList = document.getElementById('comments-list');
+            var li = document.createElement('li');
+            li.appendChild(document.createTextNode(comment));
+            commentsList.appendChild(li);
 
             commentInput.value = '';
         }
-    });
-</script>
+    </script>
 
 </body>
 </html>
-
